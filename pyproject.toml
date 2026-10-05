@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+# --- EDITA ESTOS DATOS ---
+name = "herramientas"          # Nombre de tu librería
+version = "0.1.0"              # Versión inicial
+description = "Mis funciones para proyectos personales"
+authors = [
+    {name = "Ghallahem", email = "nicolasnahuelsilva90@gmail.com"}
+]
+requires-python = ">=3.14.4"
+
+# Dependencias EXTERNAS que TU librería necesita (ej: requests, numpy)
+# Si no usas nada de fuera, déjalo vacío o borra la línea "dependencies".
+dependencies = [
+    # "requests>=2.28.0", 
+]
+
+# --- BORRA ESTA SECCIÓN SI NO LA USAS ---
+# [project.optional-dependencies]
+# dev = [
+#     "pytest",
+#     "black",
+# ]
+
+# --- NO TOCAR ESTE BLOQUE ---
+[tool.setuptools.packages.find]
+where = ["scr"]
