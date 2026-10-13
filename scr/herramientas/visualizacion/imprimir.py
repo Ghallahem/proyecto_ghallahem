@@ -7,13 +7,13 @@ def imprimir_lista_registros(lista_registros: list[dict], etiquetas_cabecera: li
         etiquetas_cabecera: Lista de strings con los nombres de las columnas a mostrar (ej: ['id', 'Nombre']).
         titulo_seccion: El título que se mostrará antes de la tabla.
     """
-    print("\n" + "=" * 60)
-    print(f" {titulo_seccion.upper()} ".center(60, "="))
-    print("=" * 60)
-
     if not lista_registros:
+        ancho_titulo = max(60, len(titulo_seccion) + 4)
+        print("\n" + "=" * ancho_titulo)
+        print(f" {titulo_seccion.upper()} ".center(ancho_titulo, "="))
+        print("=" * ancho_titulo)
         print("No hay registros disponibles para mostrar.")
-        print("=" * 60)
+        print("=" * ancho_titulo)
         return
 
     # 1. Calcular el ancho máximo necesario para cada columna
@@ -28,6 +28,14 @@ def imprimir_lista_registros(lista_registros: list[dict], etiquetas_cabecera: li
         
         # Espacio extra (2 espacios) para que el texto no pegue
         anchos_columnas.append(max_longitud + 2)
+
+    # El título y sus separadores usan el ancho de la tabla, con un mínimo
+    # de 60 caracteres para conservar el formato de secciones cortas.
+    ancho_tabla = sum(anchos_columnas)
+    ancho_titulo = max(60, ancho_tabla, len(titulo_seccion) + 4)
+    print("\n" + "=" * ancho_titulo)
+    print(f" {titulo_seccion.upper()} ".center(ancho_titulo, "="))
+    print("=" * ancho_titulo)
 
     # 2. Imprimir el encabezado (Cabeceras)
     linea_encabezado = ""
@@ -46,7 +54,7 @@ def imprimir_lista_registros(lista_registros: list[dict], etiquetas_cabecera: li
             linea_registro += f"{valor:<{anchos_columnas[indice]}}"
         print(linea_registro)
 
-    print("=" * 60)
+    print("=" * ancho_titulo)
 
 if __name__ == "__main__":
     pass
